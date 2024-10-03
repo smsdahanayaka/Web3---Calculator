@@ -1,23 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
-
+import React, { useEffect, useState } from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import "./css/calculater.css";
+import Title from "./components/Title";
+import Calculator from "./components/Calculater";
+import { createInstance } from "./web3_functions";
 function App() {
+  const [connectInstance, setInstance] = useState(null);
+  const [accounts, setAccounts] = useState(null);
+
+  useEffect(() => {
+    async function connect() {
+      try {
+        const result = await createInstance();
+        const account = result.account;
+        setAccounts(account);
+        const instance = result.instance;
+        setInstance(instance);
+        console.log("connectInstance", connectInstance);
+        console.log("accounts", accounts);
+      } catch (error) {
+        alert("faild to conect with web3");
+        console.log(error);
+      }
+    }
+    connect();
+  });
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Title name="Web3 - Calculator" />
+      <Calculator />
     </div>
   );
 }
