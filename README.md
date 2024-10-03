@@ -35,4 +35,4 @@ This is a simple Web3-based calculator that allows users to perform basic arithm
    ```bash
    git clone https://github.com/YOUR-USERNAME/web3-calculator.git
    cd web3-calculator
->>>>>>> 38e7cbd9dc89270d22f31f670300e2283ae283c5
+>>>>>>> 
